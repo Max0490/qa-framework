@@ -6,10 +6,11 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
+
     private final SelenideElement usernameInput = $x("//input[@id='user-name']");
-    private final SelenideElement passwordInput = $x("//input[@id='password']");
-    private final SelenideElement loginButton   = $x("//input[@value='Login']");
-    private final SelenideElement errorMessage  = $x("//h3[@data-test='error']");
+    private final SelenideElement passwordInput = $x("//input[@data-test='password']");
+    private final SelenideElement loginBtn = $x("//input[@data-test='login-button']");
+    private final SelenideElement errorMessage = $x("//h3[@data-test='error']");
 
     public LoginPage openPage() {
         open("/");
@@ -27,12 +28,12 @@ public class LoginPage {
     }
 
     public InventoryPage clickLoginSuccess() {
-        loginButton.click();
+        loginBtn.click();
         return new InventoryPage();
     }
 
     public LoginPage clickLoginFailure() {
-        loginButton.click();
+        loginBtn.click();
         return this;
     }
 
@@ -41,7 +42,7 @@ public class LoginPage {
     }
 
     public InventoryPage loginAs(String username, String password) {
-        return open()
+        return openPage()
                 .setUsername(username)
                 .setPassword(password)
                 .clickLoginSuccess();
