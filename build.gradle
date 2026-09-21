@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenide для UI (в main, чтобы Page Object видели библиотеку)
+    implementation 'com.codeborne:selenide:7.17.0'
+
+    // Rest Assured для API
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'io.rest-assured:json-path:5.4.0'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+
+    // AssertJ для проверок
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+
+    // Логирование
+    implementation 'org.slf4j:slf4j-simple:2.0.12'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        showStandardStreams = true
+    }
+}
