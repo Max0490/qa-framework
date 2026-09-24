@@ -50,4 +50,5 @@ public class InventoryPage {
         shoppingCartLink.click();
         return new CartPage();
     }
+
 }
